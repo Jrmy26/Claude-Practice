@@ -13,16 +13,16 @@ A big portion of lean beef, kept tender by a short baking soda marinade, deliver
 
 ### Marinade
 - 3/4 tsp (3.5 g) baking soda
-- 1 Tbsp (15 mL) low-sodium soy sauce
+- 1 Tbsp (15 mL) light soy sauce
 - 1 Tbsp (15 mL) Shaoxing wine
 - 1 Tbsp (8 g) cornstarch
 
 ### Sauce
-- 2/3 cup (160 mL) low-sodium beef broth
+- 2/3 cup (160 mL) water
 - 3 Tbsp (45 mL) oyster sauce
-- 2 Tbsp (30 mL) low-sodium soy sauce
+- 1 1/2 Tbsp (22 mL) light soy sauce
 - 1 Tbsp (15 mL) Shaoxing wine
-- 1 Tbsp (15 mL) unseasoned rice vinegar
+- 2 tsp (10 mL) white vinegar
 - 2 tsp (9 g) packed brown sugar
 - 1 Tbsp (8 g) cornstarch
 - 1 tsp (5 mL) toasted sesame oil
@@ -47,10 +47,10 @@ A big portion of lean beef, kept tender by a short baking soda marinade, deliver
 - 4 meal prep containers
 
 ## Steps
-1. Slice the steak across the grain into strips 1/8 to 1/4 inch (3 to 6 mm) thick and about 2 inches (5 cm) long, about 5 minutes, until the long muscle fibers show as short lines across each strip rather than running along it.
+1. Slice the steak across the grain into strips 1/8 to 1/4 inch (3 to 6 mm) thick and about 2 inches (5 cm) long, until the long muscle fibers show as short lines across each strip rather than running along it.
 2. Toss the beef with the baking soda, 1 Tbsp soy sauce, 1 Tbsp Shaoxing wine and 1 Tbsp cornstarch for 30 seconds, until no dry cornstarch remains.
 3. Let the beef stand at room temperature for 15 minutes, until the surface looks slightly tacky; the baking soda raises the meat's pH so it stays tender over high heat.
-4. Whisk the broth, oyster sauce, 2 Tbsp soy sauce, 1 Tbsp Shaoxing wine, vinegar, brown sugar, 1 Tbsp cornstarch, sesame oil and ground pepper for 20 seconds, until no lumps remain.
+4. Whisk the water, oyster sauce, 1 1/2 Tbsp soy sauce, 1 Tbsp Shaoxing wine, vinegar, brown sugar, 1 Tbsp cornstarch, sesame oil and ground pepper for 20 seconds, until no lumps remain.
 5. Heat the dry wok over high heat for 1 minute, until a drop of water evaporates on contact.
 6. Add the broccoli and water and cover the pan for 2 to 3 minutes, until the broccoli is bright green and a knife slides into a stem with slight resistance; it softens more when reheated, so stop while it is still firm.
 7. Transfer the broccoli to a large plate, then wipe the pan dry with a thick wad of paper towels held in tongs.
@@ -70,10 +70,11 @@ A big portion of lean beef, kept tender by a short baking soda marinade, deliver
 - Soy sauce (for gluten-free): tamari labeled gluten-free; the flavor is slightly richer. Oyster sauce and Shaoxing wine must also be replaced, since both commonly contain wheat.
 - Oyster sauce (for gluten-free): a brand labeled gluten-free; the taste is nearly the same.
 - Oyster sauce (for shellfish allergy): vegetarian mushroom "oyster" sauce; it is a little less briny. Check the label for soy and wheat, which it usually contains.
-- Shaoxing wine: dry sherry, which is close in flavor and normally free of wheat, or more broth, which removes the alcohol but loses some depth.
+- Shaoxing wine: dry sherry, which is close in flavor and normally free of wheat, or more water, which removes the alcohol but loses some depth.
 - Soy allergy: coconut aminos in place of soy sauce, with the brown sugar cut to 1 tsp (4 g) because coconut aminos are sweeter; oyster sauce must also be replaced with a soy-free version, since most contain soy.
 - Sesame allergy: omit the sesame oil and seeds; the sauce loses a little nuttiness but still works.
-- Beef broth: water with an extra 1/2 tsp (2.5 mL) soy sauce; the sauce will be lighter in body.
+- Water in the sauce: chicken broth, which Sheng Siong sells in cartons, gives the sauce more body and adds about 3 kcal per serving. Avoid beef stock cubes, which are very salty.
+- Light soy sauce: a less-salt or reduced-salt soy sauce if you find one; use 2 Tbsp (30 mL) in the sauce instead of 1 1/2 Tbsp.
 - Broccoli: broccolini cut into 2-inch (5 cm) pieces; steam it 1 minute longer.
 - Adding a base: this version has no rice, to stay under 500 kcal, and either base below takes a serving over the limit. Cauliflower rice, 1 lb (450 g) for the batch, adds about 30 kcal and 2 g protein per serving, bringing the total to about 520 kcal. Jasmine rice, 100 g uncooked for the batch, adds about 90 kcal per serving, bringing the total to about 580 kcal.
 
@@ -81,7 +82,7 @@ A big portion of lean beef, kept tender by a short baking soda marinade, deliver
 Refrigerate the containers within 2 hours for up to 3 days, or freeze up to 2 months (the broccoli will soften). Reheat in the microwave with 1 Tbsp (15 mL) water, loosely covered, for 2 to 3 minutes, stirring halfway, until steaming and 165°F (74°C).
 
 ## Macros per serving
-Estimated: 490 kcal | 51 g protein | 20 g carbs | 22 g fat
+Estimated: 487 kcal | 50 g protein | 20 g carbs | 22 g fat
 
 ## MyFitnessPal Recipe Builder
 
@@ -89,12 +90,11 @@ Estimated: 490 kcal | 51 g protein | 20 g carbs | 22 g fat
 Servings: 4
 850 g flank steak, raw
 3.5 g baking soda
-45 mL low-sodium soy sauce
+37 mL light soy sauce
 30 mL Shaoxing wine
 16 g cornstarch
-160 mL low-sodium beef broth
 45 mL oyster sauce
-15 mL unseasoned rice vinegar
+10 mL white vinegar
 9 g brown sugar
 5 mL toasted sesame oil
 0.5 g ground black pepper
