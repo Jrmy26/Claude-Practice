@@ -75,7 +75,7 @@ A big portion of lean beef, kept tender by a short baking soda marinade, deliver
 - Sesame allergy: omit the sesame oil and seeds; the sauce loses a little nuttiness but still works.
 - Beef broth: water with an extra 1/2 tsp (2.5 mL) soy sauce; the sauce will be lighter in body.
 - Broccoli: broccolini cut into 2-inch (5 cm) pieces; steam it 1 minute longer.
-- Adding a base: this version has no rice, to stay under 500 kcal. Cauliflower rice, 1 lb (450 g) for the batch, adds about 30 kcal and 2 g protein per serving. Jasmine rice, 100 g uncooked for the batch, adds about 90 kcal per serving and brings the total to about 580 kcal.
+- Adding a base: this version has no rice, to stay under 500 kcal, and either base below takes a serving over the limit. Cauliflower rice, 1 lb (450 g) for the batch, adds about 30 kcal and 2 g protein per serving, bringing the total to about 520 kcal. Jasmine rice, 100 g uncooked for the batch, adds about 90 kcal per serving, bringing the total to about 580 kcal.
 
 ## Storage
 Refrigerate the containers within 2 hours for up to 3 days, or freeze up to 2 months (the broccoli will soften). Reheat in the microwave with 1 Tbsp (15 mL) water, loosely covered, for 2 to 3 minutes, stirring halfway, until steaming and 165°F (74°C).
