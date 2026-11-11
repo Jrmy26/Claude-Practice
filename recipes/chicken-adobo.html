@@ -1,0 +1,657 @@
+<meta charset="utf-8">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Chicken Adobo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: a kitchen prep sheet. Servings control stays pinned; ingredients beside numbered steps. */
+:root {
+  --bg: #faf9f5; --surface: #ffffff; --fg: #1f1e1d; --muted: #6b6a63;
+  --line: #e3e1d7; --accent: #1f1e1d; --accent-fg: #faf9f5; --tint: #f0eee6;
+  --display: "Source Serif 4", Georgia, serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #262624; --surface: #30302e; --fg: #f5f4ee; --muted: #b7b5a9;
+    --line: #45443f; --accent: #f5f4ee; --accent-fg: #262624; --tint: #3a3a37;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #262624; --surface: #30302e; --fg: #f5f4ee; --muted: #b7b5a9;
+  --line: #45443f; --accent: #f5f4ee; --accent-fg: #262624; --tint: #3a3a37;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.5 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { padding-block: 28px 18px; display: grid; gap: 6px; }
+h1 { margin: 0; font: 500 clamp(32px, 6vw, 46px)/1.12 var(--display); text-wrap: balance; }
+h2 { margin: 0; font: 500 24px/1.25 var(--display); }
+h3 { margin: 0; font: 600 14px/1.3 var(--body); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.summary { margin: 0; max-width: 65ch; }
+.meta { margin: 0; color: var(--muted); font-size: 15px; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-block: 1px solid var(--line); }
+.bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding-block: 10px; }
+.stepper { display: flex; align-items: center; gap: 10px; }
+.stepper label { font-weight: 600; }
+.stepper button, #servings { height: 44px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: 600 22px var(--body); border-radius: 6px; }
+.stepper button { width: 44px; cursor: pointer; }
+.stepper button:hover { background: var(--tint); }
+#servings { width: 68px; text-align: center; font-variant-numeric: tabular-nums; }
+.macros { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; font-variant-numeric: tabular-nums; }
+.macros div { display: flex; align-items: baseline; gap: 5px; }
+.macros dt { color: var(--muted); font-size: 14px; }
+.macros dd { margin: 0; font: 600 21px var(--display); }
+.macros .per { color: var(--muted); font-size: 14px; align-self: center; }
+.note { margin: 14px 0 0; padding: 10px 14px; background: var(--tint); border-radius: 6px; font-size: 16px; }
+main { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 36px; padding-block: 24px 48px; }
+@media (max-width: 820px) { main { grid-template-columns: minmax(0, 1fr); } }
+section { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.column { display: grid; gap: 32px; align-content: start; min-width: 0; }
+ul.ing { list-style: none; margin: 0 0 8px; padding: 0; }
+ul.ing li { display: grid; grid-template-columns: minmax(104px, 34%) minmax(0, 1fr); gap: 12px; padding-block: 6px; border-bottom: 1px solid var(--line); }
+.qty { font-weight: 600; font-variant-numeric: tabular-nums; }
+.qty small { display: block; font-weight: 400; font-size: 14px; color: var(--muted); }
+ol.steps { margin: 0; padding-left: 26px; display: grid; gap: 12px; max-width: 65ch; }
+ol.steps li::marker { font: 600 18px var(--display); color: var(--accent); }
+.mfp-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#copy { min-height: 44px; padding: 0 18px; border: 0; border-radius: 6px; background: var(--accent); color: var(--accent-fg); font: 600 16px var(--body); cursor: pointer; }
+pre { margin: 0; padding: 14px; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font: 400 14px/1.6 var(--mono); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.btn-primary, .btn-secondary { min-height: 44px; padding: 0 18px; border-radius: 6px; font: 600 16px var(--body); cursor: pointer; }
+.btn-primary { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-fg); }
+.btn-secondary { border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.btn-secondary:hover { background: var(--tint); }
+.btn-primary:disabled, .btn-secondary:disabled { opacity: .4; cursor: default; }
+#cook-start { margin-left: auto; }
+ul.subs { list-style: none; margin: 0; padding: 0; display: grid; max-width: 65ch; }
+ul.subs li { padding-block: 8px; border-bottom: 1px solid var(--line); }
+ul.subs strong { display: block; font-weight: 600; }
+
+/* Cooking mode: one large step at a time, with a shared timer band. */
+html.cooking, html.cooking body { overflow: hidden; }
+.cook { position: fixed; inset: 0; z-index: 20; display: flex; flex-direction: column; background: var(--bg); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.cook-head { background: var(--surface); border-bottom: 1px solid var(--line); }
+.cook-head-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.cook-recipe { margin: 0; font-size: 14px; color: var(--muted); }
+.cook-count { margin: 0; font: 500 22px/1.2 var(--display); }
+.progress { height: 4px; background: var(--line); }
+.progress span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.timer-band { background: var(--tint); border-bottom: 1px solid var(--line); }
+.timer-band.done { background: var(--accent); color: var(--accent-fg); }
+.timer-in { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding-block: 8px; }
+.timer-time { font: 400 26px var(--mono); font-variant-numeric: tabular-nums; }
+.timer-actions { display: flex; gap: 8px; margin-left: auto; }
+.cook-body { flex: 1; overflow-y: auto; }
+.cook-in { max-width: 760px; padding-block: 28px; display: grid; gap: 24px; align-content: start; }
+.cook-text { margin: 0; font: 400 clamp(22px, 4vw, 30px)/1.45 var(--body); }
+.check { display: grid; gap: 4px; }
+.check h3 { margin-top: 14px; }
+.check ul { list-style: none; margin: 0; padding: 0; }
+.check label { display: flex; gap: 14px; align-items: flex-start; padding-block: 10px; border-bottom: 1px solid var(--line); font-size: 19px; cursor: pointer; }
+.check input { width: 22px; height: 22px; margin-top: 3px; flex: none; accent-color: var(--accent); }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; }
+.timer-start { justify-self: start; min-height: 52px; font-size: 18px; }
+.cook-awake { margin: 0; font-size: 14px; color: var(--muted); }
+.cook-foot { background: var(--surface); border-top: 1px solid var(--line); }
+.foot-in { max-width: 760px; display: grid; grid-template-columns: 1fr 2fr; gap: 12px; padding-block: 12px; }
+.foot-in button { min-height: 56px; font-size: 18px; }
+@media (prefers-reduced-motion: reduce) { .progress span { transition: none; } }
+</style>
+
+<header class="wrap">
+  <h1 id="name"></h1>
+  <p class="summary" id="summary"></p>
+  <p class="meta" id="meta"></p>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="stepper">
+      <label for="servings">Servings</label>
+      <button type="button" id="minus" aria-label="Remove a serving">&minus;</button>
+      <input id="servings" type="number" min="1" max="24" step="1" inputmode="numeric">
+      <button type="button" id="plus" aria-label="Add a serving">+</button>
+    </div>
+    <dl class="macros" id="macros"></dl>
+    <button type="button" class="btn-primary" id="cook-start">Cooking mode</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="note" id="scale-note" hidden></p>
+  <main>
+    <div class="column">
+      <section aria-labelledby="ing-h">
+        <h2 id="ing-h">Ingredients</h2>
+        <div id="ingredients"></div>
+      </section>
+      <section aria-labelledby="mfp-h">
+        <div class="mfp-head">
+          <h2 id="mfp-h">MyFitnessPal list</h2>
+          <button type="button" id="copy">Copy list</button>
+        </div>
+        <pre id="mfp" tabindex="0"></pre>
+      </section>
+    </div>
+    <div class="column">
+      <section aria-labelledby="steps-h">
+        <h2 id="steps-h">Steps</h2>
+        <ol class="steps" id="steps"></ol>
+      </section>
+      <section aria-labelledby="subs-h" id="subs-section">
+        <h2 id="subs-h">Substitutions</h2>
+        <ul class="subs" id="subs"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="cook" id="cook" role="dialog" aria-modal="true" aria-labelledby="cook-count" hidden>
+  <div class="cook-head">
+    <div class="wrap cook-head-in">
+      <div>
+        <p class="cook-recipe" id="cook-title"></p>
+        <p class="cook-count" id="cook-count" aria-live="polite"></p>
+      </div>
+      <button type="button" class="btn-secondary" id="cook-exit">Exit</button>
+    </div>
+    <div class="progress" aria-hidden="true"><span id="cook-progress"></span></div>
+  </div>
+  <div class="timer-band" id="timer-band" hidden>
+    <div class="wrap timer-in">
+      <span id="timer-label" role="status"></span>
+      <span class="timer-time" id="timer-time" role="timer"></span>
+      <div class="timer-actions">
+        <button type="button" class="btn-secondary" id="timer-pause">Pause</button>
+        <button type="button" class="btn-secondary" id="timer-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="cook-body" id="cook-body">
+    <div class="wrap cook-in">
+      <p class="cook-text" id="cook-text"></p>
+      <div class="check" id="cook-check" hidden></div>
+      <button type="button" class="btn-secondary timer-start" id="timer-start" hidden></button>
+      <p class="cook-awake" id="cook-awake" hidden>Your screen stays on while cooking mode is open.</p>
+    </div>
+  </div>
+  <div class="cook-foot">
+    <div class="wrap foot-in">
+      <button type="button" class="btn-secondary" id="cook-prev">Back</button>
+      <button type="button" class="btn-primary" id="cook-next">Next step</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Recipe data. To make a page for another recipe, replace this object and the <title> above.
+// us types: "lb" (n in pounds), "tsp" (n in teaspoons, shown as tsp, Tbsp or cups), "count" (n items).
+// Steps must not state quantities. They can use {name} placeholders filled by vars(servings).
+// Cooking mode offers a timer for the first time written in a step, such as "for 2 to 3 minutes" (it uses the lower number).
+const RECIPE = {
+  name: "Chicken Adobo",
+  summary: "Trimmed boneless thighs braised in soy, vinegar and plenty of garlic, then seared and glazed in the reduced sauce, give classic adobo flavour and a measured portion of rice at 54 g protein and under 500 kcal.",
+  baseServings: 4,
+  meta: "Prep 15 min. Cook 45 min. Dairy-free, egg-free. Contains soy and wheat (both soy sauces).",
+  macros: { kcal: 479, protein: 54, carbs: 33, fat: 13 },
+  ingredients: [
+    { group: "Rice", items: [
+      { qty: 120, unit: "g", us: { n: 32, type: "tsp" }, name: "jasmine rice, uncooked" },
+      { qty: 200, unit: "mL", us: { n: 40, type: "tsp" }, name: "water" }
+    ]},
+    { group: "Main", items: [
+      { qty: 1000, unit: "g", us: { n: 2.2, type: "lb" }, name: "boneless skinless chicken thighs, weighed after trimming" }
+    ]},
+    { group: "Braise", items: [
+      { qty: 80, unit: "mL", us: { n: 16, type: "tsp" }, name: "light soy sauce" },
+      { qty: 15, unit: "mL", us: { n: 3, type: "tsp" }, name: "dark soy sauce" },
+      { qty: 45, unit: "g", us: { n: 12, type: "count", one: "clove", many: "cloves" }, name: "garlic, peeled and lightly smashed" },
+      { qty: 240, unit: "mL", us: { n: 48, type: "tsp" }, name: "water" },
+      { qty: 0.6, unit: "g", us: { n: 4, type: "count", one: "bay leaf", many: "bay leaves" }, name: "dried" },
+      { qty: 3, unit: "g", us: { n: 1, type: "tsp" }, name: "whole black peppercorns" },
+      { qty: 9, unit: "g", us: { n: 2, type: "tsp" }, name: "packed brown sugar" },
+      { qty: 120, unit: "mL", us: { n: 24, type: "tsp" }, name: "white vinegar" }
+    ]},
+    { group: "Cooking", items: [
+      { qty: 10, unit: "mL", us: { n: 2, type: "tsp" }, name: "canola or other neutral oil, divided" }
+    ]}
+  ],
+  mfp: [
+    { qty: 120, unit: "g", name: "jasmine rice, uncooked" },
+    { qty: 1000, unit: "g", name: "chicken thigh, boneless skinless, raw" },
+    { qty: 80, unit: "mL", name: "light soy sauce" },
+    { qty: 15, unit: "mL", name: "dark soy sauce" },
+    { qty: 45, unit: "g", name: "garlic, raw" },
+    { qty: 0.6, unit: "g", name: "bay leaves, dried" },
+    { qty: 3, unit: "g", name: "black peppercorns" },
+    { qty: 9, unit: "g", name: "brown sugar" },
+    { qty: 120, unit: "mL", name: "white vinegar" },
+    { qty: 10, unit: "mL", name: "canola oil" }
+  ],
+  vars: function (s) {
+    const n = Math.ceil((1000 / 4) * s / 500);
+    return {
+      batches: n === 1 ? "1 batch" : n + " batches",
+      containers: s === 1 ? "1 container" : s + " containers"
+    };
+  },
+  scaleNote: {
+    above: 4,
+    text: "Above 4 servings, braise in a pot wide enough to hold the chicken in one snug layer, or split it between two pots, and sear the chicken in more batches. A bigger batch of sauce takes longer to reduce, so judge it by how it coats a spoon rather than by the clock. Cook the rice in a medium saucepan once it goes past 1 cup; the cooking time stays the same."
+  },
+  steps: [
+    "Rinse the rice in a sieve under cold running water, swirling it with your fingers, until the water runs almost clear.",
+    "Put the rice and its water in the small saucepan and bring to a boil over high heat, uncovered, for 3 to 4 minutes, until bubbles break across the whole surface.",
+    "Cover the pan, turn the heat to low and cook for 12 minutes without lifting the lid, until no water remains when you tilt the pan at the end.",
+    "While the rice cooks, cut away the skin and any thick white fat pads from the chicken, then cut each thigh in half crosswise so the pieces cook evenly.",
+    "Lay the chicken in the pot in a snug single layer, then add the light and dark soy sauces, garlic, water, bay leaves, peppercorns and brown sugar.",
+    "Pour the vinegar over the top and do not stir.",
+    "When the rice is done, turn off its heat and leave it covered for at least 10 minutes, until the grains are tender and separate; it can wait, covered, until you pack the containers.",
+    "Bring the pot to a boil over medium-high heat, uncovered and without stirring, for 5 to 7 minutes, until it bubbles across the whole surface.",
+    "Keep it boiling uncovered, still without stirring, for 3 minutes, until the sharp vinegar smell softens; boiling the vinegar before stirring cooks off its harsh raw edge.",
+    "Stir, cover and simmer over low heat for 20 to 25 minutes, turning the pieces halfway, until a knife slides easily into the thickest piece and it reads at least 165°F (74°C); thighs are most tender at 175 to 185°F (80 to 85°C).",
+    "Transfer the chicken to a plate with tongs, leaving the garlic, bay leaves and peppercorns in the pot.",
+    "Tilt the pot and spoon off the clear fat pooled on the surface of the sauce, until only small droplets remain.",
+    "Boil the sauce uncovered over medium-high heat for 8 to 12 minutes, stirring now and then, until it has reduced by about half, looks glossy and lightly coats the back of a spoon.",
+    "Meanwhile, pat the chicken dry with paper towels so it browns instead of steaming.",
+    "Divide the chicken into {batches}, and the oil into the same number of equal shares.",
+    "Heat one share of the oil in the nonstick skillet over medium-high heat for 1 minute, until it shimmers.",
+    "Add one batch of chicken, smooth side down, and sear without moving it for 2 to 3 minutes, until the edges turn deep brown; lower the heat if it smokes, because the soy-soaked surface scorches quickly.",
+    "Turn the pieces and sear for 1 to 2 minutes, until the second side is browned, then return them to the plate. Repeat the last two steps and this one for any remaining batches.",
+    "If the sauce does not yet coat the back of a spoon, keep boiling it until it does, then lower the heat to medium-low.",
+    "Return the chicken and any plate juices to the sauce and turn the pieces for 1 minute, until each one is glazed and the sauce clings to it.",
+    "Fluff the rice with a fork and divide it among {containers}.",
+    "Divide the chicken among the containers and spoon the sauce, garlic and peppercorns over it, leaving the bay leaves in the pot."
+  ],
+  substitutions: [
+    { item: "Chicken thighs, if your pack is fattier", swap: "These macros assume thighs trimmed to about 4 g fat per 100 g raw. If the label shows 6 g or more, use half thighs and half boneless skinless chicken breast by weight, which keeps a serving at about 495 kcal with 58 g protein. Cut the breast into chunks the size of the thigh halves and add them after the thighs have simmered for 10 minutes so they stay juicy, still cooking them to 165°F (74°C)." },
+    { item: "All chicken breast", swap: "The same weight of boneless skinless chicken breast gives about 480 kcal and 61 g protein per serving, but breast dries out faster and turns stringy over several days of reheating. Simmer it for only 12 to 15 minutes, until 165°F (74°C)." },
+    { item: "Skin-on boneless thighs (often sold as boneless chicken leg)", swap: "Buy about 30% more by weight, remove the skin and fat pads, and weigh out the recipe amount after trimming. Leaving the skin on adds roughly 175 kcal per serving, taking it to about 650 kcal, well over 500." },
+    { item: "White vinegar", swap: "Filipino cane vinegar (sukang Iloko), the same amount, if you find it; it is slightly milder and rounder, with no change in calories." },
+    { item: "Dark soy sauce", swap: "Leave it out and add the same amount again of light soy sauce; the sauce is paler, less glossy and slightly saltier." },
+    { item: "Less salt", swap: "Cut the light soy sauce by a quarter and replace it with the same amount of extra water; most of the colour comes from the dark soy, so the look barely changes." },
+    { item: "Brown sugar", swap: "The same amount of white sugar, or leave it out for a sharper, more sour adobo that is about 8 kcal lighter per serving." },
+    { item: "Whole peppercorns", swap: "Half as much coarsely ground black pepper, which spreads the heat through the sauce instead of in occasional bites." },
+    { item: "Jasmine rice", swap: "The same weight of uncooked brown rice, at about the same calories with more fibre; cook it with about 1 2/3 times the water in the recipe for 35 to 40 minutes before resting." },
+    { item: "Lighter base", swap: "Replace the rice with cauliflower, about 110 g (1/4 lb) per serving, grated into rice-sized pieces and steamed or microwaved until just tender; a serving drops to about 400 kcal with 54 g protein." },
+    { item: "Larger rice portion", swap: "50 g (about 1/4 cup) uncooked jasmine rice per serving brings a serving to about 550 kcal, over 500. The 30 g per serving in the recipe leaves a small margin under 500 kcal; 35 g per serving is the most that fits, at about 498 kcal." }
+  ]
+};
+
+// Page logic. No changes are needed here for a new recipe.
+const $ = function (id) { return document.getElementById(id); };
+const FRACTIONS = [[0, ""], [0.125, "1/8"], [0.25, "1/4"], [1 / 3, "1/3"], [0.5, "1/2"], [2 / 3, "2/3"], [0.75, "3/4"], [1, ""]];
+
+function fraction(x) {
+  let whole = Math.floor(x);
+  const rest = x - whole;
+  let best = FRACTIONS[0];
+  FRACTIONS.forEach(function (f) { if (Math.abs(f[0] - rest) < Math.abs(best[0] - rest)) best = f; });
+  if (best[0] === 1) { whole += 1; best = FRACTIONS[0]; }
+  if (whole === 0 && best[0] === 0) return "1/8";
+  return [whole || "", best[1]].filter(Boolean).join(" ");
+}
+
+function volume(tsp) {
+  if (tsp >= 12) {
+    const cups = tsp / 48;
+    return fraction(cups) + (cups > 1.1 ? " cups" : " cup");
+  }
+  if (tsp >= 3) return fraction(Math.round(tsp / 3 * 2) / 2) + " Tbsp";
+  return fraction(tsp) + " tsp";
+}
+
+function weight(lb) {
+  const oz = Math.round(lb * 16);
+  if (oz < 16) return oz + " oz";
+  const rest = oz % 16;
+  return Math.floor(oz / 16) + " lb" + (rest ? " " + rest + " oz" : "");
+}
+
+function usAmount(us, f) {
+  const n = us.n * f;
+  if (us.type === "lb") return weight(n);
+  if (us.type === "tsp") return volume(n);
+  const rounded = n < 1 ? Math.max(0.25, Math.round(n * 4) / 4) : Math.round(n * 2) / 2;
+  return fraction(rounded) + " " + (rounded > 1 ? us.many : us.one);
+}
+
+function metric(q) {
+  if (q < 1) return String(Math.max(0.1, Math.round(q * 10) / 10));
+  if (q < 10) return String(Math.round(q * 2) / 2);
+  return String(Math.round(q));
+}
+
+function clamp(value) {
+  return Math.min(24, Math.max(1, Math.round(value)));
+}
+
+function renderStatic() {
+  $("name").textContent = RECIPE.name;
+  $("summary").textContent = RECIPE.summary;
+  $("meta").textContent = RECIPE.meta;
+  const subs = RECIPE.substitutions || [];
+  $("subs-section").hidden = subs.length === 0;
+  subs.forEach(function (sub) {
+    const li = document.createElement("li");
+    const strong = document.createElement("strong");
+    strong.textContent = sub.item;
+    const text = document.createElement("span");
+    text.textContent = sub.swap;
+    li.append(strong, text);
+    $("subs").append(li);
+  });
+}
+
+let currentServings = RECIPE.baseServings;
+let currentSteps = [];
+
+function render(servings) {
+  const f = servings / RECIPE.baseServings;
+  const m = RECIPE.macros;
+
+  $("macros").replaceChildren();
+  [["kcal", m.kcal], ["protein", m.protein + " g"], ["carbs", m.carbs + " g"], ["fat", m.fat + " g"]].forEach(function (row) {
+    const box = document.createElement("div");
+    const dd = document.createElement("dd");
+    const dt = document.createElement("dt");
+    dd.textContent = row[1];
+    dt.textContent = row[0];
+    box.append(dd, dt);
+    $("macros").append(box);
+  });
+  const per = document.createElement("div");
+  per.className = "per";
+  per.textContent = "estimated, per serving";
+  $("macros").append(per);
+
+  $("ingredients").replaceChildren();
+  RECIPE.ingredients.forEach(function (group) {
+    const h = document.createElement("h3");
+    h.textContent = group.group;
+    const ul = document.createElement("ul");
+    ul.className = "ing";
+    group.items.forEach(function (item) {
+      const li = document.createElement("li");
+      const qty = document.createElement("span");
+      qty.className = "qty";
+      qty.textContent = usAmount(item.us, f);
+      const small = document.createElement("small");
+      small.textContent = metric(item.qty * f) + " " + item.unit;
+      qty.append(small);
+      const name = document.createElement("span");
+      name.textContent = item.name;
+      li.append(qty, name);
+      ul.append(li);
+    });
+    $("ingredients").append(h, ul);
+  });
+
+  const vars = RECIPE.vars(servings);
+  currentServings = servings;
+  currentSteps = RECIPE.steps.map(function (step) {
+    return step.replace(/\{(\w+)\}/g, function (_, key) { return vars[key]; });
+  });
+  $("steps").replaceChildren();
+  currentSteps.forEach(function (text) {
+    const li = document.createElement("li");
+    li.textContent = text;
+    $("steps").append(li);
+  });
+
+  $("mfp").textContent = ["Servings: " + servings].concat(RECIPE.mfp.map(function (row) {
+    return metric(row.qty * f) + " " + row.unit + " " + row.name;
+  })).join("\n");
+
+  const note = RECIPE.scaleNote;
+  $("scale-note").hidden = !note || servings <= note.above;
+  if (note) $("scale-note").textContent = note.text;
+}
+
+function setServings(value) {
+  const servings = clamp(value);
+  $("servings").value = servings;
+  render(servings);
+}
+
+$("minus").addEventListener("click", function () { setServings(Number($("servings").value) - 1); });
+$("plus").addEventListener("click", function () { setServings(Number($("servings").value) + 1); });
+$("servings").addEventListener("input", function () {
+  const value = Number(this.value);
+  if (this.value !== "" && value >= 1 && value <= 24) render(Math.round(value));
+});
+$("servings").addEventListener("blur", function () {
+  setServings(Number(this.value) || RECIPE.baseServings);
+});
+
+$("copy").addEventListener("click", function () {
+  const button = this;
+  function done(label) {
+    button.textContent = label;
+    setTimeout(function () { button.textContent = "Copy list"; }, 1800);
+  }
+  function selectList() {
+    const range = document.createRange();
+    range.selectNodeContents($("mfp"));
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    done("Press Ctrl+C");
+  }
+  if (!navigator.clipboard) { selectList(); return; }
+  navigator.clipboard.writeText($("mfp").textContent).then(function () { done("Copied"); }, selectList);
+});
+
+// Cooking mode
+const cook = { index: 0, servings: 0, lock: null, checked: new Set() };
+const timer = { end: 0, left: 0, running: false, id: 0, label: "", audio: null };
+
+function stepSeconds(text) {
+  const match = text.match(/(\d+)(?:\s+to\s+\d+)?\s+(second|minute)s?\b/i);
+  if (!match) return 0;
+  return Number(match[1]) * (match[2].toLowerCase() === "minute" ? 60 : 1);
+}
+
+function durationLabel(sec) {
+  if (sec < 60) return sec + " sec";
+  return Math.floor(sec / 60) + " min" + (sec % 60 ? " " + (sec % 60) + " sec" : "");
+}
+
+function clock(sec) {
+  return Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0");
+}
+
+function buildChecklist() {
+  const f = currentServings / RECIPE.baseServings;
+  $("cook-check").replaceChildren();
+  RECIPE.ingredients.forEach(function (group) {
+    const h = document.createElement("h3");
+    h.textContent = group.group;
+    const ul = document.createElement("ul");
+    group.items.forEach(function (item) {
+      const key = group.group + "|" + item.name;
+      const li = document.createElement("li");
+      const label = document.createElement("label");
+      const box = document.createElement("input");
+      box.type = "checkbox";
+      box.checked = cook.checked.has(key);
+      box.addEventListener("change", function () {
+        if (box.checked) cook.checked.add(key); else cook.checked.delete(key);
+      });
+      const text = document.createElement("span");
+      text.textContent = usAmount(item.us, f) + " (" + metric(item.qty * f) + " " + item.unit + ") " + item.name;
+      label.append(box, text);
+      li.append(label);
+      ul.append(li);
+    });
+    $("cook-check").append(h, ul);
+  });
+}
+
+function showStep() {
+  const total = currentSteps.length;
+  const i = cook.index;
+  $("cook-progress").style.width = (i / total * 100) + "%";
+  $("cook-check").hidden = i !== 0;
+  if (i === 0) {
+    $("cook-count").textContent = "Before you start";
+    $("cook-text").textContent = "Set out everything for " + (currentServings === 1 ? "1 serving" : currentServings + " servings") + " and tick off each item.";
+    $("timer-start").hidden = true;
+  } else {
+    const text = currentSteps[i - 1];
+    const sec = stepSeconds(text);
+    $("cook-count").textContent = "Step " + i + " of " + total;
+    $("cook-text").textContent = text;
+    $("timer-start").hidden = !sec;
+    $("timer-start").dataset.seconds = sec;
+    $("timer-start").textContent = "Start " + durationLabel(sec) + " timer";
+  }
+  $("cook-prev").disabled = i === 0;
+  $("cook-next").textContent = i === 0 ? "Start step 1" : i === total ? "Finish" : "Next step";
+  $("cook-body").scrollTop = 0;
+}
+
+async function lockScreen() {
+  try {
+    if (!("wakeLock" in navigator) || document.visibilityState !== "visible") return;
+    cook.lock = await navigator.wakeLock.request("screen");
+    $("cook-awake").hidden = false;
+  } catch (e) {
+    cook.lock = null;
+    $("cook-awake").hidden = true;
+  }
+}
+
+function openCook() {
+  if (cook.servings !== currentServings) {
+    cook.index = 0;
+    cook.servings = currentServings;
+    cook.checked.clear();
+  }
+  $("cook-title").textContent = RECIPE.name + ", " + (currentServings === 1 ? "1 serving" : currentServings + " servings");
+  buildChecklist();
+  $("cook").hidden = false;
+  document.documentElement.classList.add("cooking");
+  showStep();
+  lockScreen();
+  $("cook-next").focus();
+}
+
+function closeCook() {
+  $("cook").hidden = true;
+  document.documentElement.classList.remove("cooking");
+  if (cook.lock) { cook.lock.release().catch(function () {}); cook.lock = null; }
+  $("cook-awake").hidden = true;
+  $("cook-start").focus();
+}
+
+function nextStep() {
+  if (cook.index >= currentSteps.length) { cook.index = 0; closeCook(); return; }
+  cook.index += 1;
+  showStep();
+}
+
+function prevStep() {
+  if (cook.index > 0) { cook.index -= 1; showStep(); }
+}
+
+function tick() {
+  const left = Math.max(0, Math.ceil((timer.end - Date.now()) / 1000));
+  $("timer-time").textContent = clock(left);
+  if (left === 0) finishTimer();
+}
+
+function beep() {
+  const ctx = timer.audio;
+  if (!ctx) return;
+  try {
+    ctx.resume();
+    for (let i = 0; i < 3; i++) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const t = ctx.currentTime + i * 0.45;
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.2, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.3);
+    }
+  } catch (e) { /* sound is optional */ }
+}
+
+function startTimer(sec, label) {
+  if (!timer.audio) {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) timer.audio = new AudioCtx();
+    } catch (e) { timer.audio = null; }
+  }
+  clearInterval(timer.id);
+  timer.end = Date.now() + sec * 1000;
+  timer.running = true;
+  timer.label = label;
+  $("timer-band").hidden = false;
+  $("timer-band").classList.remove("done");
+  $("timer-label").textContent = label;
+  $("timer-pause").hidden = false;
+  $("timer-pause").textContent = "Pause";
+  $("timer-cancel").textContent = "Cancel";
+  tick();
+  timer.id = setInterval(tick, 250);
+}
+
+function finishTimer() {
+  clearInterval(timer.id);
+  timer.running = false;
+  $("timer-band").classList.add("done");
+  $("timer-label").textContent = "Time's up: " + timer.label;
+  $("timer-pause").hidden = true;
+  $("timer-cancel").textContent = "Dismiss";
+  beep();
+}
+
+$("cook-start").addEventListener("click", openCook);
+$("cook-exit").addEventListener("click", closeCook);
+$("cook-next").addEventListener("click", nextStep);
+$("cook-prev").addEventListener("click", prevStep);
+$("timer-start").addEventListener("click", function () {
+  startTimer(Number(this.dataset.seconds), "Step " + cook.index);
+});
+$("timer-pause").addEventListener("click", function () {
+  if (timer.running) {
+    timer.left = timer.end - Date.now();
+    timer.running = false;
+    clearInterval(timer.id);
+    this.textContent = "Resume";
+  } else {
+    timer.end = Date.now() + timer.left;
+    timer.running = true;
+    tick();
+    timer.id = setInterval(tick, 250);
+    this.textContent = "Pause";
+  }
+});
+$("timer-cancel").addEventListener("click", function () {
+  clearInterval(timer.id);
+  timer.running = false;
+  $("timer-band").hidden = true;
+});
+document.addEventListener("keydown", function (e) {
+  if ($("cook").hidden) return;
+  if (e.key === "Escape") closeCook();
+  else if (e.key === "ArrowRight") nextStep();
+  else if (e.key === "ArrowLeft") prevStep();
+});
+document.addEventListener("visibilitychange", function () {
+  if (document.visibilityState === "visible" && !$("cook").hidden) lockScreen();
+});
+
+renderStatic();
+setServings(RECIPE.baseServings);
+</script>
